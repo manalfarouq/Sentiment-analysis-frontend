@@ -4,16 +4,31 @@ import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { register } from '@/lib/api';
-import Navbar from '@/components/Navbar';
 
-export default function SignUp() {
+export default function SignUp() {  
+
+  const [windowMinimizing, setWindowMinimizing] = useState<boolean>(false);
+
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
   const [success, setSuccess] = useState<boolean>(false);
+
   const router = useRouter();
+
+  const handleCloseSignUpModal = () => {
+    setWindowMinimizing(true);
+    setTimeout(() => {
+      setUsername('');
+      setPassword('');
+      setConfirmPassword('');
+      setError('');
+      setWindowMinimizing(false);
+      router.push("/");
+    }, 300);
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
@@ -47,100 +62,248 @@ export default function SignUp() {
   };
 
   return (
-    <>
-      <Navbar />
-      <div className="min-h-screen bg-gradient-to-br from-green via-pink to-purple flex items-center justify-center p-4 pt-24">
-        <div className="max-w-md w-full">
-          <div className="text-center mb-8 animate-fade-in">
-            <h1 className="text-5xl font-bold text-white mb-2">✨</h1>
-            <h2 className="text-4xl font-bold text-white">Inscription</h2>
-            <p className="text-white/80 mt-2">Rejoignez-nous dès maintenant !</p>
+    <div 
+      className="min-h-screen relative overflow-hidden flex items-center justify-center p-4"
+      style={{
+        backgroundImage: "url('/background.png')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div className="absolute inset-0 bg-black/20" />
+
+      {/* Fenêtre */}
+      <div className="relative z-10 w-full max-w-md">
+        <div 
+          className={`rounded-sm transition-all duration-300 ${windowMinimizing ? "scale-75 opacity-0" : "scale-100 opacity-100"}`}
+          style={{
+            border: '2px solid',
+            borderColor: '#dfdfdf #808080 #808080 #dfdfdf',
+            backgroundColor: '#c0c0c0',
+            boxShadow: 'inset 1px 1px 0 #ffffff, inset -1px -1px 0 #808080, 1px 1px 0 #000000, 2px 2px 5px rgba(0,0,0,0.3)',
+            minWidth: '320px',
+          }}
+        >
+          {/* Barre de titre */}
+          <div 
+            className="flex items-center justify-between px-1 py-1"
+            style={{
+              backgroundImage: 'linear-gradient(90deg, #000080 0%, #1084d7 100%)',
+              borderBottom: '2px solid',
+              borderBottomColor: '#dfdfdf',
+            }}
+          >
+            <span 
+              className="text-white text-sm font-bold"
+              style={{
+                fontFamily: '"MS Sans Serif", Arial, sans-serif',
+                fontSize: '11px',
+                textShadow: '1px 1px 0 rgba(0,0,0,0.5)',
+              }}
+            >
+              Inscription
+            </span>
+
+            {/* --- BOUTON X --- */}
+            <button 
+                  onClick={handleCloseSignUpModal}
+                  className="w-5 h-5 flex items-center justify-center hover:bg-gray-300 transition-colors"
+                  style={{
+                    border: '2px solid',
+                    borderColor: '#dfdfdf #808080 #808080 #dfdfdf',
+                    backgroundColor: '#c0c0c0',
+                  }}
+                >
+                  <span style={{ fontSize: '10px', fontWeight: 'bold', color: '#000000' }}>X</span>
+                </button>
           </div>
 
-          <div className="bg-white rounded-3xl shadow-2xl p-8 animate-slide-up">
+          {/* Contenu */}
+          <div className="p-4">
+            
             {success ? (
-              <div className="text-center py-8 animate-fade-in">
-                <div className="text-6xl mb-4">🎉</div>
-                <h3 className="text-2xl font-bold text-green mb-2">
-                  Inscription réussie !
-                </h3>
-                <p className="text-gray-600">
-                  Redirection vers la connexion...
-                </p>
+              <div style={{ textAlign: 'center', padding: '20px' }}>
+                <p style={{ fontFamily: '"MS Sans Serif", Arial, sans-serif', fontSize: '12px', fontWeight: 'bold', color: '#000000' }}>Inscription réussie !</p>
+                <p style={{ fontFamily: '"MS Sans Serif", Arial, sans-serif', fontSize: '11px', color: '#000080' }}>Redirection vers la connexion...</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit}>
-                <div className="mb-6">
-                  <label className="block text-purple font-semibold mb-2">
-                    👤 Nom d'utilisateur
-                  </label>
-                  <input
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    placeholder="Choisissez un nom d'utilisateur"
-                    className="w-full p-4 border-2 border-purple rounded-xl focus:outline-none focus:ring-4 focus:ring-green text-gray-800"
-                    required
-                  />
-                </div>
 
-                <div className="mb-6">
-                  <label className="block text-purple font-semibold mb-2">
-                    🔒 Mot de passe
-                  </label>
-                  <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Créez un mot de passe (min 6 caractères)"
-                    className="w-full p-4 border-2 border-purple rounded-xl focus:outline-none focus:ring-4 focus:ring-green text-gray-800"
-                    required
-                  />
-                </div>
+              <div className="space-y-4">
 
-                <div className="mb-6">
-                  <label className="block text-purple font-semibold mb-2">
-                    🔒 Confirmer le mot de passe
-                  </label>
-                  <input
-                    type="password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    placeholder="Confirmez votre mot de passe"
-                    className="w-full p-4 border-2 border-purple rounded-xl focus:outline-none focus:ring-4 focus:ring-green text-gray-800"
-                    required
-                  />
-                </div>
+                {/* FORMULAIRE */}
+                <form onSubmit={handleSubmit} className="space-y-4">
 
-                {error && (
-                  <div className="mb-4 p-4 bg-red-100 border-2 border-red-400 text-red-700 rounded-xl animate-fade-in">
-                    ❌ {error}
+                  {/* Username */}
+                  <div>
+                    <label 
+                      style={{
+                        fontFamily: '"MS Sans Serif", Arial, sans-serif',
+                        fontSize: '11px',
+                        fontWeight: 'bold',
+                        color: '#000000',
+                        marginBottom: '4px',
+                        display: 'block'
+                      }}
+                    >
+                      Nom d'utilisateur:
+                    </label>
+                    <input
+                      type="text"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      placeholder="Entrez votre nom"
+                      className="w-full px-2 py-2 text-xs"
+                      style={{
+                        fontFamily: '"MS Sans Serif", Arial, sans-serif',
+                        border: '2px solid',
+                        borderColor: '#808080 #dfdfdf #dfdfdf #808080',
+                        backgroundColor: '#ffffff',
+                        color: '#000',
+                        outline: 'none',
+                      }}
+                      required
+                    />
                   </div>
-                )}
 
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full bg-gradient-to-r from-green to-purple text-white font-bold py-4 rounded-xl hover:scale-105 transform transition-all duration-300 shadow-lg disabled:opacity-50"
-                >
-                  {loading ? '⏳ Inscription...' : '🎉 Créer mon compte'}
-                </button>
-              </form>
-            )}
+                  {/* Password */}
+                  <div>
+                    <label 
+                      style={{
+                        fontFamily: '"MS Sans Serif", Arial, sans-serif',
+                        fontSize: '11px',
+                        fontWeight: 'bold',
+                        color: '#000000',
+                        marginBottom: '4px',
+                        display: 'block'
+                      }}
+                    >
+                      Mot de passe:
+                    </label>
+                    <input
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="••••••••"
+                      className="w-full px-2 py-2 text-xs"
+                      style={{
+                        fontFamily: '"MS Sans Serif", Arial, sans-serif',
+                        border: '2px solid',
+                        borderColor: '#808080 #dfdfdf #dfdfdf #808080',
+                        backgroundColor: '#ffffff',
+                        color: '#000',
+                        outline: 'none',
+                      }}
+                      required
+                    />
+                  </div>
 
-            {!success && (
-              <div className="mt-6 text-center">
-                <p className="text-gray-600">
-                  Déjà un compte ?{' '}
-                  <Link href="/login" className="text-purple font-bold hover:underline">
-                    Se connecter
-                  </Link>
-                </p>
+                  {/* Confirm */}
+                  <div>
+                    <label 
+                      style={{
+                        fontFamily: '"MS Sans Serif", Arial, sans-serif',
+                        fontSize: '11px',
+                        fontWeight: 'bold',
+                        color: '#000000',
+                        marginBottom: '4px',
+                        display: 'block'
+                      }}
+                    >
+                      Confirmer:
+                    </label>
+                    <input
+                      type="password"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      placeholder="••••••••"
+                      className="w-full px-2 py-2 text-xs"
+                      style={{
+                        fontFamily: '"MS Sans Serif", Arial, sans-serif',
+                        border: '2px solid',
+                        borderColor: '#808080 #dfdfdf #dfdfdf #808080',
+                        backgroundColor: '#ffffff',
+                        color: '#000',
+                        outline: 'none',
+                      }}
+                      required
+                    />
+                  </div>
+
+                  {/* Erreur */}
+                  {error && (
+                    <div 
+                      style={{
+                        border: '2px solid',
+                        borderColor: '#dfdfdf #808080 #808080 #dfdfdf',
+                        backgroundColor: '#c0c0c0',
+                        color: '#c00000',
+                        padding: '8px',
+                        fontSize: '11px',
+                      }}
+                    >
+                      {error}
+                    </div>
+                  )}
+
+                  {/* Boutons */}
+                  <div className="flex gap-2 justify-center pt-2">
+
+                    {/* Créer */}
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      style={{
+                        fontFamily: '"MS Sans Serif", Arial, sans-serif',
+                        border: '2px solid',
+                        borderColor: '#dfdfdf #808080 #808080 #dfdfdf',
+                        backgroundColor: '#c0c0c0',
+                        color: '#000',
+                        padding: '4px 16px',
+                        cursor: loading ? 'not-allowed' : 'pointer',
+                        fontSize: '11px',
+                        fontWeight: 'bold',
+                        opacity: loading ? 0.6 : 1,
+                      }}
+                    >
+                      {loading ? '...' : 'Créer'}
+                    </button>
+
+                    {/* --- ANNULER --- */}
+                    <button
+                      type="button"
+                      onClick={handleCloseSignUpModal}
+                      style={{
+                        fontFamily: '"MS Sans Serif", Arial, sans-serif',
+                        border: '2px solid',
+                        borderColor: '#dfdfdf #808080 #808080 #dfdfdf',
+                        backgroundColor: '#c0c0c0',
+                        color: '#000',
+                        padding: '4px 16px',
+                        cursor: 'pointer',
+                        fontSize: '11px',
+                        fontWeight: 'bold',
+                      }}
+                    >
+                      Annuler
+                    </button>
+
+                  </div>
+
+                </form>
+
+                {/* Lien vers login */}
+                <div style={{ textAlign: 'center', marginTop: '12px' }}>
+                  <p style={{ fontFamily: '"MS Sans Serif", Arial, sans-serif', fontSize: '11px', color: '#000000' }}>
+                    Déjà un compte ? <Link href="/login" style={{ color: '#000080', textDecoration: 'underline' }}>Se connecter</Link>
+                  </p>
+                </div>
+
               </div>
             )}
+
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

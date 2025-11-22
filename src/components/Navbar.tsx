@@ -30,11 +30,13 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center space-x-2">
             <div className="flex space-x-1">
-              <div className="w-8 h-8 bg-purple rounded-full"></div>
-              <div className="w-8 h-8 bg-pink rounded-full"></div>
-              <div className="w-8 h-8 bg-green rounded-full"></div>
+              {/* Animation subtile pour les ronds */}
+              <div className="w-4 h-4 bg-purple rounded-full animate-bounce-slow delay-100"></div>
+              <div className="w-4 h-4 bg-pink rounded-full animate-bounce-slow delay-200"></div>
+              <div className="w-4 h-4 bg-green rounded-full animate-bounce-slow"></div>
             </div>
-            <span className="text-2xl font-bold text-purple">Sentiment</span>
+            {/* Ajout de l'animation pulse-shadow sur le titre */}
+            <span className="text-2xl font-bold text-purple animate-pulse-shadow rounded-lg p-1">Sentiment</span>
           </Link>
 
           <div className="flex items-center space-x-4">
