@@ -499,7 +499,7 @@ export default function Login() {
                         opacity: loading ? 0.6 : 1,
                       }}
                     >
-                      {loading ? '⏳ ...' : '✓ OK'}
+                      {loading ? '...' : '✓ OK'}
                     </button>
                     <button
                       onClick={handleCloseLoginModal}
