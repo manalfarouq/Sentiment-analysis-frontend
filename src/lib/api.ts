@@ -10,7 +10,8 @@ interface SentimentResponse {
   result: string;
 }
 
-const API_URL = 'http://localhost:8000';
+// Utilise la variable d'environnement, sinon localhost en développement
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 export async function register(username: string, password: string): Promise<RegisterResponse> {
   const response = await fetch(`${API_URL}/register/register`, {

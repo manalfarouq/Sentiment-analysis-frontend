@@ -79,7 +79,10 @@ export default function AnalyzeSentiment() {
     setResult(null);
 
     try {
-      const response = await fetch('http://localhost:8000/sentiment/predict', {
+      // URL de l'API (utilise la variable d'environnement ou localhost)
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+      const response = await fetch(`${API_URL}/sentiment/predict`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
