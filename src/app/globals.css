@@ -2,13 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Variables de couleurs personnalisées */
-:root {
-  --purple: #50207A;
-  --pink: #FF48B9;
-  --green: #12CE6A;
-  --background: #F5E6FF;
-}
+
+
 
 /* Animations personnalisées */
 @keyframes fadeIn {
