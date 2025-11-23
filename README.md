@@ -301,7 +301,7 @@ Les contributions sont les bienvenues ! Voici comment participer :
 
 ## 🔗 Liens Utiles
 
-- **Backend Repository** : [GitHub](https://github.com/votre-username/sentiment-analysis-backend)
+- **Backend Repository** : [GitHub](https://github.com/manalfarouq/Sentiment-analysis-backend-.git)
 - **Backend API** : [https://tasentimentxp-backend-nnql.onrender.com](https://tasentimentxp-backend-nnql.onrender.com)
 - **Documentation API** : [https://tasentimentxp-backend-nnql.onrender.com/docs](https://tasentimentxp-backend-nnql.onrender.com/docs)
 - **Application Live** : [https://sentiment-analysis-frontend-vert.vercel.app/](https://sentiment-analysis-frontend-vert.vercel.app/)
