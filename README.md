@@ -1,7 +1,5 @@
 # TasentimentXP - Frontend
 
-> Une expérience utilisateur unique inspirée de Windows XP pour l'analyse de sentiment IA
-
 [![Next.js](https://img.shields.io/badge/Next.js-14.x-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.x-38bdf8)](https://tailwindcss.com/)
