@@ -7,7 +7,7 @@ export default function TypewriterBanner() {
   const [isVisible, setIsVisible] = useState(true);
   const [showCursor, setShowCursor] = useState(true);
   
-  const fullText = "Bienvenue dans TasentimentXP de MANAL";
+  const fullText = "Bienvenue dans zoroXP de MANAL";
   const typingSpeed = 80; // ms par caractère
   const displayDuration = 3000; // Temps d'affichage après l'écriture complète
   const fadeOutDuration = 500; // Durée du fade out
