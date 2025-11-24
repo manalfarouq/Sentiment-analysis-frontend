@@ -1,4 +1,4 @@
-# TasentimentXP - Frontend
+# zoroXP - Frontend
 
 [![Next.js](https://img.shields.io/badge/Next.js-14.x-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)](https://www.typescriptlang.org/)
@@ -7,7 +7,7 @@
 
 ## Description
 
-**TasentimentXP** est une application web moderne déguisée en système d'exploitation rétro ! Inspirée par l'esthétique emblématique de Windows XP, cette interface offre une expérience nostalgique tout en utilisant les technologies web les plus récentes.
+**zoroXP** est une application web moderne déguisée en système d'exploitation rétro ! Inspirée par l'esthétique emblématique de Windows XP, cette interface offre une expérience nostalgique tout en utilisant les technologies web les plus récentes.
 
 L'application permet d'analyser le sentiment de textes (positif, neutre, négatif) via une API d'intelligence artificielle, le tout dans une interface ludique et immersive.
 
