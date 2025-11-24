@@ -46,7 +46,7 @@ export default function Navbar() {
                 pathname === '/' ? 'bg-purple text-white' : 'text-purple hover:bg-purple/10'
               }`}
             >
-              🏠 Accueil
+               Accueil
             </Link>
 
             {isLoggedIn ? (
@@ -54,7 +54,7 @@ export default function Navbar() {
                 onClick={handleLogout}
                 className="px-4 py-2 rounded-lg font-semibold bg-red-500 text-white hover:bg-red-600 transition-all"
               >
-                🚪 Déconnexion
+                 Déconnexion
               </button>
             ) : (
               <>
@@ -64,7 +64,7 @@ export default function Navbar() {
                     pathname === '/login' ? 'bg-pink text-white' : 'text-pink hover:bg-pink/10'
                   }`}
                 >
-                  🔐 Connexion
+                   Connexion
                 </Link>
                 <Link
                   href="/signup"
