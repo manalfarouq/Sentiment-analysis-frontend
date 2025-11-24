@@ -3,7 +3,7 @@ import './globals.css';
 import TypewriterBanner from '@/components/TypewriterBanner';
 
 export const metadata: Metadata = {
-  title: 'TasentimentXP',
+  title: 'zoroXP',
   description: 'Analysez vos commentaires avec l\'IA',
 };
 
