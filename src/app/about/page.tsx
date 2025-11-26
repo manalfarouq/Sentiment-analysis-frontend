@@ -391,7 +391,7 @@ export default function About() {
               </p>
 
               <p style={{ marginTop: '16px', color: '#000080', textAlign: 'center', borderTop: '1px solid #808080', paddingTop: '8px' }}>
-                © 2024 - Tous droits réservés<br />
+                © 2025 - Tous droits réservés<br />
                 Made with ❤ by M A N A L
               </p>
             </div>
