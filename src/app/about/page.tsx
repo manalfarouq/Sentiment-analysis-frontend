@@ -338,7 +338,7 @@ export default function About() {
 
               <p style={{ marginBottom: '12px' }}>
                 <strong>Stack Technique:</strong><br />
-                • <strong>AI/ML:</strong> Hugging Face BERT, PyTorch<br />
+                • <strong>AI/ML:</strong> Hugging Face<br />
                 • <strong>Backend:</strong> FastAPI, Python 3.11, PostgreSQL<br />
                 • <strong>Frontend:</strong> Next.js 14+, React 18+, TypeScript<br />
                 • <strong>Styling:</strong> Tailwind CSS<br />
